@@ -1,23 +1,51 @@
 
 const express = require("express");
 const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose')
+const User = require('./models/user.js')
+const jwt = require('jsonwebtoken')
 
-const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
+app.use(cors())
+app.use(express.json())
 
-const port = process.env.PORT || 5000;
+mongoose.connect('mongodb://localhost:27017/EasyGO');
 
-app.use(cors());
-app.use(express.json());
-app.use(require("./routes/record"));
+app.post('/api/register', async (req, res) => {
+    console.log(req.body)
+    try {
+        await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+        })
+        res.json({ status: 'ok' })
+    } catch (error) {
+        res.json({ statur: 'error', error: 'Email is already taken' })
+    }
+})
 
-// get driver connection
-const dbo = require("./db/conn");
+app.post('/api/login', async (req, res) => {
+    console.log(req.body)
+    const user = await User.findOne({
+        email: req.body.email,
+        password: req.body.password
+    }, "")
+    if(user){
 
-app.listen(port, () => {
-  // perform a database connection when server starts
-  dbo.connectToServer(function (err) {
-    if (err) console.error(err);
-   });
-  console.log(`Server is running on port: ${port}`);
-});
+        const token = jwt.sign({
+            name: user.name,
+            email: user.email,
+        },
+        "qzpmybtval10"
+    )
+
+        return res.json({ status: 'ok', user:token })
+    } else {
+        return res.json({ status: 'error', user:false })
+    }
+})
+
+app.listen(1337, ()=> {
+    console.log("Server started on 1337")
+})
