@@ -1,0 +1,215 @@
+@font-face {
+    font-family: CedarvilleCursive-Regular;
+    src: url(C:/Projects/mec_matrimony/src/assets/fonts/CedarvilleCursive-Regular.ttf);
+  }
+
+:root{
+    font-size: 16px;
+    font-family: "cascadia code";
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #1b1b1b;
+    --bg-secondary: #141418;
+}
+
+.navbar{
+    z-index: 1;
+    width: 16rem;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-primary);
+    transition: width 200ms ease;
+}
+
+.navlogo{
+    display: flex;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    filter: grayscale(100%) opacity(0.75);
+    transition: filter 50ms;
+}
+
+.navlogo .link-logo{
+    display: none;
+    position: relative;
+    top: 0.5rem;
+}
+
+.navlogo svg{
+    position: relative;
+    left: 0;
+    transform: rotate(0deg);
+    transition: all 200ms;
+}
+
+.navbar:hover .navlogo{
+    width: 16rem;
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+}
+.navbar:hover .navlogo .link-logo{
+    display: block;
+    position: fixed;
+    left: 1rem;
+}
+.fa-arrowsecondary{
+    fill: #f06f24;
+}
+.fa-arrowprimary{
+    fill: #fa650e;
+}
+.navbar:hover .navlogo svg{
+    position: relative;
+    left: 5rem;
+    transform: rotate(-180deg);
+    transition: all 200ms;
+}
+
+.navbar:hover .navitem{
+    width: 16rem;
+}
+
+.navbar:hover .navtext{
+    z-index: 2;
+    opacity: 100%;
+    transform: translate(0);
+    transition: opacity 200ms ease 5ms;
+}
+
+.navitems{
+    position: fixed;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-block: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.navlink:last-child{
+    margin-top: auto;
+}
+
+.navitem{
+    display: flex;
+    align-items: center;
+    width: 16rem;
+    height: 3rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.75);
+    transition: filter 200ms;
+}
+
+.navitem:hover{
+    filter: grayscale(0%) opacity(0.75);
+    background: var(--bg-secondary);
+}
+
+.navtext{
+    position: fixed;
+    left: 3.6rem;
+    font-weight: bolder;
+    z-index: -1;
+    width: 9rem;
+    margin-left: 2rem;
+    transition: filter 50ms ease;
+}
+
+.navitem svg{
+    min-width: 1rem;
+    position: fixed;
+    left: 1.3rem;
+}
+
+.fa-primary{
+    fill: #ee3999;
+    color: #ee3999;
+}
+.fa-secondary{
+    fill: #cd1c7a;
+    color: #cd1c7a;
+}
+
+.fill-primary{
+    fill: var(--text-primary);
+}
+
+.note{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 1rem;
+    margin: 20px;
+    padding: 15px 15px;
+    box-shadow: 10px white;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note:hover{
+    position: relative;
+    background-color: rgb(49, 49, 49);
+    transform: scale(1.03);
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.note:active{
+    background-color: rgb(29, 29, 29);
+    transform: scale(1.01);
+    transition: all 0.05s;
+}
+
+.content-title{
+    font-size: 25px;
+    font-family: "cascadia code";
+    color: rgb(194, 58, 148);
+    margin: 0px 0px;
+}
+
+.flex-at-date{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+}
+
+.flex-at-date h4{
+    margin: 0;
+}
+.flex-at-date p{
+    margin: 0;
+    opacity: 50%;
+    font-size: 12px;
+    position: relative;
+    right: 1.5rem;
+}
+
+.at-name{
+    align-self: flex-start;
+    position: relative;
+    opacity: 50%;
+}
+
+.content{
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.content p{
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

@@ -3,27 +3,22 @@ import {
     useJsApiLoader,
     GoogleMap,
     Marker,
-    InfoWindow,
   } from "@react-google-maps/api";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase , ref, onValue } from "firebase/database";
+import { getDatabase , ref, onValue, set } from "firebase/database";
 import bus from './bus.png';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-
-
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBvT9e8I7ceq1KHeAuKnWoCwJgI-mUA9yg",
-  authDomain: "mapslocate-415315.firebaseapp.com",
-  databaseURL: "https://mapslocate-415315-default-rtdb.firebaseio.com",
-  projectId: "mapslocate-415315",
-  storageBucket: "mapslocate-415315.appspot.com",
-  messagingSenderId: "443005667076",
-  appId: "1:443005667076:web:cdda123fe9f28492edb251",
-  measurementId: "G-WE5JF32RB9"
+  apiKey: "AIzaSyDNACfdjolnfFoOTTQ8q4ohgwdzurEv_uE",
+  authDomain: "easygo-91a8b.firebaseapp.com",
+  projectId: "easygo-91a8b",
+  storageBucket: "easygo-91a8b.appspot.com",
+  messagingSenderId: "981852041919",
+  appId: "1:981852041919:web:e194732e3ec405a8524c0a",
+  measurementId: "G-JL7FW8ZM21"
 };
 
 // Initialize Firebase
@@ -39,12 +34,12 @@ function Home() {
   const db = getDatabase();
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyDvang4CPpYVCBUoNOrMaHZw5KFyB-0VJk"
+    googleMapsApiKey: `AIzaSyDvang4CPpYVCBUoNOrMaHZw5KFyB-0VJk`
   })
 
   const [currentLocation, setCurrentLocation] = useState([]);
   const fetchdata = async () => {
-  const starCountRef = ref(db, "location/");
+  const starCountRef = ref(db, "Trips");
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
     setCurrentLocation(data);
@@ -71,7 +66,7 @@ function Home() {
     <>
       <GoogleMap
         center={center}
-        zoom={8}
+        zoom={18}
         mapContainerStyle={{ width: "100%", height: "100vh" }}
         options={{
           zoomControl: false,
@@ -80,7 +75,7 @@ function Home() {
           fullscreenControl: false,
         }}
       >
-        <Marker position={currentLocation}>
+        <Marker position={currentLocation} icon={bus}>
         </Marker>
       </GoogleMap>
     </>
