@@ -5,6 +5,7 @@
 
 :root{
     font-size: 16px;
+
     font-family: "cascadia code";
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
@@ -12,13 +13,28 @@
     --bg-secondary: #141418;
 }
 
+.home-container{
+    display: grid;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 2%;
+    grid-template-rows: repeat(28, 3.5%);
+    grid-template-columns: repeat(50, 2%);
+    background-color: lavender;
+}
+
 .navbar{
     z-index: 1;
-    width: 16rem;
-    height: 100vh;
-    position: fixed;
+    width: 100%;
+    height: 100%;
+    grid-row: 1 / 101;
+    grid-column: 1 / 8;
     background-color: var(--bg-primary);
     transition: width 200ms ease;
+    border-radius: 20px;
 }
 
 .navlogo{
@@ -69,7 +85,7 @@
 }
 
 .navbar:hover .navitem{
-    width: 16rem;
+    width: 100%;
 }
 
 .navbar:hover .navtext{
@@ -80,7 +96,6 @@
 }
 
 .navitems{
-    position: fixed;
     list-style-type: none;
     padding: 0;
     margin-top: 0.5rem;
@@ -98,7 +113,7 @@
 .navitem{
     display: flex;
     align-items: center;
-    width: 16rem;
+    width: 100%;
     height: 3rem;
     color: var(--text-primary);
     text-decoration: none;
@@ -107,16 +122,16 @@
 }
 
 .navitem:hover{
-    filter: grayscale(0%) opacity(0.75);
+    filter: grayscale(0%) opacity(1);
     background: var(--bg-secondary);
 }
 
 .navtext{
     position: fixed;
-    left: 3.6rem;
+    left: 2.5rem;
     font-weight: bolder;
     z-index: -1;
-    width: 9rem;
+    width: 7rem;
     margin-left: 2rem;
     transition: filter 50ms ease;
 }
@@ -212,4 +227,57 @@
     -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.dashboard{
+    position: relative;
+    grid-row: 1 / 101;
+    grid-column: 7/ 26;
+    padding: 2% 2% 2% 7%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0 20px 20px 0;
+}
+
+.dashboard-title{
+    position: relative;
+    height: 15%;
+    width: 100%;
+    background-color: #fa650e;
+}
+
+.distance-tracker{
+    position: relative;
+    height: 25%;
+    width: 100%;
+    background-color: #0e6cfa;
+}
+
+.map-container{
+    flex-grow: 1;
+    box-shadow: #141418 0 0 10px -5px;
+    border-radius: 10px;
+}
+
+.calendar{
+    grid-row: 1 / 15;
+    grid-column: 27 / 50;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.wallet{
+    grid-row: 16 / 100;
+    grid-column: 27 / 38;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.demand{
+    grid-row: 16 / 100;
+    grid-column: 39 / 50;
+    background-color: #FFFFFF;
+    border-radius: 20px;
 }

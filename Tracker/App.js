@@ -3,8 +3,6 @@ import { getDatabase, ref, onValue, set , push ,update   } from 'firebase/databa
 import * as Location from "expo-location";
 import React, { useState } from "react";
 import { Button, Text, View } from "react-native";
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 
 export default function App() {
   const firebaseConfig = {
@@ -17,27 +15,6 @@ export default function App() {
     appId: "1:443005667076:web:cdda123fe9f28492edb251",
     measurementId: "G-WE5JF32RB9"
   };
-  // Import the Firebase SDK
-
-  firebase.initializeApp(firebaseConfig);
-
-  // Get a reference to the Firestore database
-  const db = firebase.firestore();
-
-  // Reference to the document or collection you want to update
-  const docRef = db.collection('Trips').doc('dnuwkQ2BtOJRHrnLhvBh');
-
-  // Update the document
-  docRef.update({
-    checkpoints: [],
-    origin: {lat: 10.0558121, lng: 76.3543095}
-  })
-  .then(() => {
-    console.log('Document updated successfully');
-  })
-  .catch((error) => {
-    console.error('Error updating document:', error);
-  });
 
   initializeApp(firebaseConfig);
 
@@ -56,13 +33,13 @@ export default function App() {
       setLocation(location);
     
       const db = getDatabase();
-      const referenceFuel = ref(db, 'Trips/');
+      const referenceFuel = ref(db, 'location/');
       update(referenceFuel, {
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       });
       
-    }, 5000);
+    }, 2000);
     
     return () => clearInterval(intervalId);
   };
